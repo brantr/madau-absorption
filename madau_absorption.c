@@ -13,7 +13,7 @@
  *   This code is ported from a routine supplied by Alice Shapley, originally
  *   developed by Kurt Adelberger.
  *
- *   Provide an array of wavelengths in microns, with the length of the 
+ *   Provide an array of wavelengths in Angstrom, with the length of the 
  *   array n_lambda, at a redshift z and return an array of the attenuation 
  *   owing to neutral H in the IGM along the line of sight.
  *
@@ -22,7 +22,7 @@
  */
 double *madau_absorption(double *lambda, int n_lambda, double z)
 {
-	//lambda is in microns
+	//lambda is in angstroms
 	double *attenuation;
 
         double lylambda[32];
@@ -56,7 +56,8 @@ double *madau_absorption(double *lambda, int n_lambda, double z)
 	//fflush(stdout);
         for(int j=0;j<n_lambda;j++)
 	{
-                l = lambda[j]*1.0e4;	//(convert to angstroms)
+                //l = lambda[j]*1.0e4;	//(convert to angstroms)
+                l = lambda[j]; //leave in angstroms
                 teffline = 0.0;
 
                 for(int i=0;i<nseries;i++)

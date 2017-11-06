@@ -10,4 +10,8 @@
  *  \brief Wavelength-dependent absorption owing to neutral H in the IGM.
  */
 double *madau_absorption(double *lambda, int n_lambda, double z);
+
+//print to a file
+void print_madau_absorption(double *lambda, int n_lambda, double z);
+
 #endif //MADAU_ABSORPTION_H
