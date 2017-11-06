@@ -6,6 +6,7 @@
  */
 #include<math.h>
 #include<stdio.h>
+#include<stdlib.h>
 #include"madau_absorption.h"
 /*! \fn double *madau_absorption(double *lambda, int n_lambda, double z);
  *  \brief Wavelength-dependent absorption owing to neutral H in the IGM.
@@ -88,4 +89,18 @@ double *madau_absorption(double *lambda, int n_lambda, double z)
 	}
 
         return attenuation;
+}
+
+void print_madau_absorption(double *lambda, int n_lambda, double z)
+{
+  int i;
+  FILE *fp;
+  char fname[200];
+  sprintf(fname,"madau_absorption.%3.1f.txt",z);
+  double *absorption = madau_absorption(lambda, n_lambda, z);
+  fp = fopen(fname,"w");
+  for(i=0;i<n_lambda;i++)
+    fprintf(fp,"%e\t%e\n",lambda[i],absorption[i]);
+  fclose(fp);
+  free(absorption);
 }
